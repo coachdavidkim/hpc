@@ -187,18 +187,18 @@ def initialize_cyclecloud_cli(username, cyclecloud_admin_pw):
                       "--url=https://localhost", "--verify-ssl=false", username_flag, password_flag])
 
 
-def letsEncrypt(fqdn, location):
+#def letsEncrypt(fqdn, location):
     # FQDN is assumed to be in the form: hostname.location.cloudapp.azure.com
     # fqdn = hostname + "." + location + ".cloudapp.azure.com"
-    sleep(60)
-    try:
-        cmd_list = [cs_cmd, "keystore", "automatic", "--accept-terms", fqdn]
-        output = check_output(cmd_list)
-        print cmd_list
-        print output
-    except CalledProcessError as e:
-        print "Error getting SSL cert from Lets Encrypt"
-        print "Proceeding with self-signed cert"
+#    sleep(60)
+#    try:
+#        cmd_list = [cs_cmd, "keystore", "automatic", "--accept-terms", fqdn]
+#        output = check_output(cmd_list)
+#        print cmd_list
+#        print output
+#    except CalledProcessError as e:
+#        print "Error getting SSL cert from Lets Encrypt"
+#        print "Proceeding with self-signed cert"
 
 
 def get_vm_metadata():
@@ -371,7 +371,7 @@ def main():
     cyclecloud_account_setup(vm_metadata, args.useManagedIdentity, args.tenantId, args.applicationId,
                              args.applicationSecret, args.username, args.azureSovereignCloud, args.acceptTerms, 
                              args.password, args.storageAccount)
-    letsEncrypt(args.hostname, vm_metadata["compute"]["location"])
+    #letsEncrypt(args.hostname, vm_metadata["compute"]["location"])
 
     create_user_credential(args.username)
 
